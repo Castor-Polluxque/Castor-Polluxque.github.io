@@ -3,7 +3,7 @@ body, html {
   padding: 0;
   overflow: hidden;
   height: 100%;
-  background: #000;
+  background: #000; /* Dark background */
   color: white;
   font-family: sans-serif;
 }
@@ -15,7 +15,7 @@ body, html {
   width: 100%;
   height: 100%;
   display: block;
-  z-index: -1;
+  z-index: -1; /* Push behind the text */
 }
 
 #content {
