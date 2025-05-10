@@ -1,8 +1,12 @@
 const canvas = document.getElementById("bg");
 const ctx = canvas.getContext("2d");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
 
 let nodes = [];
 
@@ -18,11 +22,12 @@ for (let i = 0; i < 100; i++) {
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+
   for (let i = 0; i < nodes.length; i++) {
     let a = nodes[i];
     ctx.beginPath();
     ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI);
-    ctx.fillStyle = "white";
+    ctx.fillStyle = "cyan"; // visible node color
     ctx.fill();
 
     for (let j = i + 1; j < nodes.length; j++) {
@@ -34,13 +39,13 @@ function draw() {
         ctx.beginPath();
         ctx.moveTo(a.x, a.y);
         ctx.lineTo(b.x, b.y);
-        ctx.strokeStyle = `rgba(255,255,255,${1 - dist / 100})`;
+        ctx.strokeStyle = `rgba(0, 255, 255, ${1 - dist / 100})`; // bright cyan
         ctx.stroke();
       }
     }
   }
 
-  // update positions
+  // Move particles
   for (let node of nodes) {
     node.x += node.vx;
     node.y += node.vy;
