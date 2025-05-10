@@ -23,11 +23,14 @@ for (let i = 0; i < 100; i++) {
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+  ctx.fillStyle = "#000000";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
   for (let i = 0; i < nodes.length; i++) {
     let a = nodes[i];
     ctx.beginPath();
     ctx.arc(a.x, a.y, a.radius, 0, 2 * Math.PI);
-    ctx.fillStyle = "cyan"; // visible node color
+    ctx.fillStyle = "#00ffff"; // bright cyan
     ctx.fill();
 
     for (let j = i + 1; j < nodes.length; j++) {
@@ -39,7 +42,9 @@ function draw() {
         ctx.beginPath();
         ctx.moveTo(a.x, a.y);
         ctx.lineTo(b.x, b.y);
-        ctx.strokeStyle = `rgba(0, 255, 255, ${1 - dist / 100})`; // bright cyan
+        ctx.strokeStyle = `rgba(100, 255, 255, ${(1 - dist / 100) * 0.5})`; // more subtle
+// ctx.strokeStyle = `rgba(50, 150, 150, ${(1 - dist / 100) * 0.3})`;
+
         ctx.stroke();
       }
     }
